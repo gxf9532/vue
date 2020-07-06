@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+   
+</head>
+<body>
+
+    <!-- 
+        1.引入vue.js
+        2.创建Vue对象
+
+     -->
+
+    <div id="test">
+        <input type="text" v-model="msg">
+        <p>{{msg}}</p>
+    </div>
+        
+    <p>{{msg}}</p>
+    
+    
+    <script src="./js/vue.js"></script>
+    <script>
+
+        const vm = new Vue({
+            el: '#test', // element 选择器 用来找到指定的标签 指定模板区域
+            data: {
+                msg: "Hello World!"
+            }
+
+        })
+        
+        let num = 3
+        let timer = setInterval(() => {
+
+            num--
+            if (num < 0) {
+                num = 0
+                clearInterval(timer)
+            } 
+
+            vm.msg = num
+        }, 1000)
+      
+
+    </script>
+</body>
+</html>

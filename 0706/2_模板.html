@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <!-- 
+        Vue中的模板语法 
+        1.双大括号表达式  解析变量  
+        2.指令 v-开头的自定义标签属性
+        3.强制绑定 绑定属性值 
+        完整:
+        v-bind: xxx='yyy'
+        简洁:
+        :x='y'
+        4.绑定事件监听
+        功能: 绑定回调函数
+        写法: v-on:click='callback'
+     -->
+    <div id="App">
+
+        <!-- 1.模板语法 -->
+        <p>{{ msg.toUpperCase() }}</p>
+
+
+        <!-- 强制数据绑定 -->
+        <a href="url">百度</a><br>
+        <a v-bind:href="url">绑定百度</a><br>
+        <!-- 简写方式 -->
+        <a :href="url">简写绑定百度</a>
+        <a href="" onClick={this.handleClick}></a> <br>
+
+        <!-- 绑定事件监听 -->
+        <button class="btn btn-sm btn-primary" v-on:click="handleClick">绑定点击事件监听</button>
+        <button class="btn btn-sm btn-primary" @click="handleClick">绑定点击事件监听(简写方式)</button>
+        <button class="btn btn-sm btn-primary" @click="handleClick2('abc')">绑定点击事件监听(传值))</button>
+    </div>
+
+    <script src="./js/vue.js"></script>
+    <script>
+
+        new Vue({
+            el: '#App', // 模板
+            data: { // 数据
+                msg: 'The United States of America',
+                url: "http://www.baidu.com"
+            },
+            methods: { // 方法
+                handleClick (event) {
+                    // alert('高老师最帅')
+                    // alert(event.target.innerText)
+                    // alert(event.target.innerHTML)
+                    alert(event.target.textContent)
+                },
+                handleClick2 (arg) {
+                    alert(arg)
+                }
+            }
+        })
+
+
+
+    </script>
+</body>
+
+</html>
