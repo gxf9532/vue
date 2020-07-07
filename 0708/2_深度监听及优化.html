@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+    <div id="app">
+        <p>obj.a: {{obj.a}}</p>
+        <p>obj.a: <input type="text" v-model="obj.a"></p>
+    </div>
+    
+    <script src="./js/vue.js"></script>
+    <script>
+
+        new Vue({
+            el: '#app',
+            data: {
+                obj: {
+                    a: 100,
+                    b: 200
+                }
+            },
+            /*
+                Vue 不能检测到对象的属性的增加或者删除  
+                属性必须在data对象上才会被Vue转换   
+                默认情况下   handler只监听obj这个属性本身的引用变化 
+                也就是说给obj赋值的时候才会监听到  
+
+            */
+            watch: {
+                // 优化: 这里使用字符串代替深度监听!
+                // Vue会逐层解析直到找到a并给a添加handler监听 但是其他属性不会添加!
+                'obj.a': {
+                    handler(newValue, oldValue) {
+                        console.log('执行了监听')
+                    },
+                    immediate: true
+                    //  深度监听
+                    /*
+                        深度监听 监听会逐层向下遍历 将这个监听对象的每个属性
+                        都添加监视器  性能会降低  修改对象中的任何一个属性
+                        都会触发handler执行 
+                    */
+                    // deep: true
+                }
+            }    
+        })
+
+    </script>
+</body>
+</html>

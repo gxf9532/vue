@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>列表排序</h2>
+        搜索: <input type="text" v-model="searchByName">
+        <ul>
+            <li v-for="(user, index) in filterUsers" :key="user.id">
+                {{index}} -- {{user.name}} -- {{user.age}}
+            </li>
+        </ul>
+        <hr>
+        <button @click="ageFlag=1">按年龄升序</button>
+        <button @click="ageFlag=2">按年龄降序</button>
+        <button @click="ageFlag=0">按默认顺序</button>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                users: [
+                    { id: 1, name: 'lisi', age: 20 },
+                    { id: 2, name: 'wangwu', age: 22 },
+                    { id: 3, name: 'zhaoliu', age: 23 },
+                    { id: 4, name: 'lianqi1', age: 29 },
+                    { id: 5, name: 'lianqi2', age: 30 },
+                    { id: 6, name: 'lianqi3', age: 31 },
+                    { id: 7, name: '陈笑哈哈', age: 22 },
+                    { id: 8, name: '特朗普', age: 22 }
+                ],
+                searchByName: '',// 要搜索的姓名关键字
+                ageFlag: 0 // 排序: 0：默认 1: 升序 2: 降序 
+            },
+
+            // 计算
+            computed: {
+                filterUsers() {
+                    //1. 获取相关数据
+                    const { users, ageFlag, searchByName } = this
+
+                    // 姓名搜索过滤
+                    const resArr = users.filter((user, index) => user.name.indexOf(searchByName) !== -1)
+                    
+                    // 判断
+                    if (ageFlag !== 0) {
+                        if (ageFlag === 2) {
+                            // 降序
+                            resArr.sort((obj1, obj2) => {
+                                return obj2.age - obj1.age
+                            })
+                        } else {
+                            // 升序 
+                            resArr.sort((obj1, obj2) => {
+                                return obj1.age - obj2.age
+                            })
+                        }
+                    }
+
+                    return resArr
+                }
+            },
+
+        })
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <div id="app">
+        <p>fullName: {{fullName}}</p>
+        <p>firstName: <input type="text" v-model="firstName" /></p>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                firstName: 'li',
+                lastName: 'si',
+                fullName: ''
+            },
+            /*
+                watch的特点: 最初绑定的时候是不执行的 会监听每次变化之后的新值 
+                然后才会执行 
+            */
+            watch: {
+
+                // firstName(newValue, oldValue) {
+                //     // console.log("new:" + newValue + ',old:' + oldValue)
+                //     this.fullName = newValue + ' ' + this.lastName
+                // }
+
+                firstName: {
+                    handler(newValue, oldValue) {
+                        this.fullName = newValue + ' ' + this.lastName
+                    },
+                    // 会立即先执行handler方法 
+                    immediate: true
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

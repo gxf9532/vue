@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>条件渲染</h2>
+        <!-- 
+            v-if 
+            v-else 
+            v-show  
+
+            v-else和v-show的选择 
+            如果是频繁的切换  使用v-show更好
+         -->
+        <p v-if="isok">可以</p>
+        <p v-else>不可以</p>
+
+        <p v-show="isok">可以(v-show)</p>
+        <p v-show="!isok">不可以(v-show)</p>
+
+        <button @click="isok=!isok">嫁给我好吗</button>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+
+        new Vue({
+            el: '#app',
+            data: {
+                isok: true
+            }
+        })
+
+    </script>
+</body>
+
+</html>

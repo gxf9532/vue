@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .a {
+            color: #F00;
+        }
+        .b {
+            font-size: 30px;
+        }
+        .c {
+            background-color: #00F;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 
+            1.class绑定
+         -->
+
+        <h2 class="c" :class='myClass'>不确定类名</h2>
+        <h2 :class="{a: isA, b: isB}">对象形式绑定</h2>
+        <h2 :class="['a','b']">数组的形式绑定</h2>
+
+        <hr>
+
+        <button @click="updateActive">更新状态</button>
+        <!-- 
+            2.style绑定
+         -->
+         <h2 :style="{color: myColor, fontSize: mySize + 'px'}">style绑定</h2>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        const vm = new Vue({
+            // el: '#app',
+            data() {
+                return {
+
+                    // class绑定
+                    myClass: 'b',
+                    isA: true,
+                    isB: false,
+
+                    // style绑定
+                    myColor: '#FC1',
+                    mySize: 80
+                }
+            },
+            methods: {
+                updateActive() {
+                    // this.myClass = 'c'
+                    this.isA = !this.isA
+                    this.isB = !this.isB
+                }
+            },
+        })
+
+        // 通过vue组件对象形式在外部进行挂载
+        vm.$mount('#app')
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <div id="app">
+        <p>num:{{num}}</p>
+        <p>num: <input type="text" v-model="num"></p>
+        
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                num: 0
+            }
+            // watch: {
+            //     num(newVal, oldVal) {
+            //         console.log(oldVal)
+            //     }
+            // },
+        })
+
+        const myWatch = vm.$watch('num', (newVal, oldVal) => {
+            console.log(newVal)
+        })
+
+        // 如果是上面这种监听的方式  那么需要手动注销watch监听 
+        myWatch()
+        
+
+    </script>
+</body>
+
+</html>

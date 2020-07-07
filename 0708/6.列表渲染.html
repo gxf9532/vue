@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>列表渲染</h2>
+        <ul>
+            <li v-for="(user, index) in users" :key="user.id">
+                {{index}}: {{user.name}} -- {{user.age}}
+                -- <button @click="deleteUser(index)">删除</button>&nbsp; | &nbsp;
+                <button @click="updateUser(index, {id: Date.now(), name: '修改后的姓名', age: 28})">更新</button>
+            </li>
+        </ul>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+
+        new Vue({
+            el: '#app',
+            /*
+                data对象的set(setter)监听
+                所有层次的data对象都会有set进行监听 但是数组除外
+            */
+            data: {
+                users: [
+                    { id: 1, name: '陈啸', age: 22 },
+                    { id: 2, name: '灿伦', age: 23 },
+                    { id: 3, name: '阿山', age: 24 },
+                    { id: 4, name: '晓隆', age: 25 },
+                    { id: 5, name: '七友', age: 26 }
+                ]
+         
+            },
+            methods: {
+                deleteUser(index) {
+                    // console.log(index)
+                    this.users.splice(index, 1)
+
+                },
+                updateUser(index, newData) {
+                    // console.log(index, newData)
+
+                    // 这个写法是没有set监视的
+                    // this.users[index] = newData
+
+                    // 这里调用的数组是重写之后的方法!
+                    this.users.splice(index, 1, newData)
+                  
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>
