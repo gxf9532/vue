@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        /* 显示和隐藏的过渡样式 */
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: opacity .5s;
+        }
+        /* 指定隐藏时的样式 */
+        .fade-enter,
+        .fade-leave-to
+
+        /* .fade-leave-active 在低于版本 2.1.8 中 */
+            {
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="show = !show">切换</button>
+        <transition name="fade">
+            <h2 v-if="show">高老师最帅</h2>
+        </transition>
+    </div>
+
+    <script src="./js/vue.js"></script>
+    <script>
+
+        new Vue({
+            el: '#app',
+            data: {
+                show: true
+            }
+        })
+
+    </script>
+</body>
+
+</html>

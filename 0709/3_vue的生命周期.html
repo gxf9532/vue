@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+</head>
+
+<body>
+    <!-- 
+        Vue对象的生命周期
+        1.初始化 
+        new Vue({})
+        beforeCreate()  
+        created()  
+        beforeMount()  
+        mounted()  
+
+        2.更新 
+        beforeUpdate() 
+        updated() 
+
+        3.销毁
+        vm.$destory() 
+        beforeDestory()  
+        destoryed()   
+
+        生命周期中的常用方法
+        created()  
+        mounted()  
+        一般用来发送ajax请求 启动定时器  
+
+         beforeDestory()  
+         一般用来做收尾工作  比如清除定时器 
+        
+     -->
+    <div id="app">
+        <button @click="destoryHandle">停止</button>
+        <h3 v-show="isShow">高老师最帅</h3>
+        <p>{{ showMsg }}</p>
+        <p>{{ showMsg }}</p>
+        <p>{{ showMsg }}</p>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+
+        new Vue({
+            el: '#app',
+            data: {
+                isShow: true,
+                showMsg: '高老师还是最帅'
+            },
+
+            methods: {
+                destoryHandle() {
+                    // 清除定时器
+                    this.$destroy()
+                }
+            },
+
+            beforeCreate() {
+                console.log('beforeCreate')
+            },
+
+            created() {
+                console.log('created')
+            },
+
+            beforeMount() {
+                console.log('beforeMount')
+            },
+         
+
+            //  是在初始显示之后执行一次
+            mounted() {
+                console.log('mounted');
+                // 这里一般适合执行异步操作 比如ajax请求或者定时器
+                this.timer = setInterval(() => {
+                    this.isShow = !this.isShow
+                }, 500)
+            },
+
+            beforeUpdate() {
+                console.log('beforeUpdate')
+            },
+
+            updated() {
+                console.log('updated')
+            },
+
+            beforeDestroy() {
+                console.log('beforeDestroy');
+                clearInterval(this.timer)
+            },
+
+            destroyed() {
+                console.log('destroyed')
+            }
+
+           
+        })
+
+
+
+    </script>
+</body>
+
+</html>

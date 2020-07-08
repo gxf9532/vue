@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <style>
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            border: 1px solid #CCC;
+            padding: 20px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+
+            <form action="#" method="post">
+                <div class="form-group">
+                    <label for="username">用户名</label>
+                    <input type="text" class="form-control" v-model="formData.username" placeholder="请输入用户名...">
+                </div>
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" class="form-control" v-model="formData.password" placeholder="请输入密码...">
+                </div>
+                <div class="form-group">
+                    <h3>性别:</h3>
+                    <input type="radio" id="male" name="sex" value="男" v-model="formData.sex">
+                    <label for="male">男</label>
+                    <input type="radio" id="female" name="sex" value="女" v-model="formData.sex">
+                    <label for="female">女</label>
+                </div>
+
+                <div class="form-group">
+                    <h3>爱好:</h3>
+                    <input type="checkbox" id="basketball" value="basketball" v-model="formData.likes">
+                    <label for="basketball">篮球</label>
+                    <input type="checkbox" id="football" value="football" v-model="formData.likes">
+                    <label for="football">足球</label>
+                    <input type="checkbox" id="aov" value="aov" v-model="formData.likes">
+                    <label for="aov">王者荣耀 </label>
+                </div>
+
+                <div class="form-group">
+                    <h3>所在地区</h3>
+                    <select v-model="formData.cityId">
+                        <option value="">--未选择--</option>
+                        <option :value="city.id" v-for="(city, index) in citys" :key="city.id">{{ city.name }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <h3>自我介绍</h3>
+                    <textarea  cols="30" rows="5" v-model="formData.info"></textarea>
+                </div>
+                <input type="submit" value="注册" @click.prevent="subHandle">
+            </form>
+        </div>
+    </div>
+
+
+    <script src="./js/vue.js"></script>
+    <script>
+
+        new Vue({
+            el: '#app',
+            data: {
+                // 表单数据
+                formData: {
+                    username: '',
+                    password: '',
+                    sex: '男',
+                    likes: ['aov'],
+                    cityId: '1',
+                    info: ''
+
+                },
+                citys: [
+                    { id: 1, name: "广州" },
+                    { id: 2, name: "汕头" },
+                    { id: 3, name: "清远" },
+                    { id: 4, name: "湛江" }
+                ]
+            },
+            methods: {
+                subHandle () {
+                    console.log('这里发送ajax请求', JSON.stringify(this.formData))
+                    // axios.post().then()
+                }
+            },
+
+        })
+
+
+    </script>
+</body>
+
+</html>
