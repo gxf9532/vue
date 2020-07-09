@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(user, index) in lists" :key="index">
+                {{ user.id }} == {{ user.name }} == {{ user.age }}
+            </li>
+        </ul>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+
+        /*
+            key的作用 
+            key是什么?  key是虚拟DOM对象的标识   
+            为什么key不适合使用index  
+        */
+        new Vue({
+            el: '#app',
+            data: {
+                lists: [
+                    { id: 1, name: 'lisi', age: 20 },
+                    { id: 2, name: 'wangwu', age: 22 },
+                    { id: 3, name: 'zhaoliu', age: 23 }
+                ]
+            }
+        })
+        
+    </script>
+</body>
+
+</html>

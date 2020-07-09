@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <div id="app">
+        <p v-upper="msg"></p>
+        <p v-lower="msg"></p>
+    </div>
+    <script src="./js/vue.js"></script>
+
+    <script>
+
+        // 注册全局指令 
+        Vue.directive('upper', function (el, binding) {
+            // console.log(binding.value)
+            el.textContent = binding.value.toUpperCase()
+        })
+
+        new Vue({
+            el: '#app',
+            data: {
+                msg: 'This is a Good Idea!'
+            },
+            // 局部指令
+            directives: {
+                'lower'(el, binding) {
+                    el.textContent = binding.value.toLowerCase()
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

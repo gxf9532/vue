@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        Vue常用指令  
+        v-if  
+        v-else
+        v-show  
+        v-for  
+        v-on 
+        v-bind 
+        v-model  
+        v-text  
+        ref： 给模板中的元素添加标识符 vue对象通过这个标识符找到这个元素对象
+     -->
+    <div id="app">
+        <p ref="content">这里是内容</p>
+        <button @click="getConent">显示内容</button>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                
+            },
+            methods: {
+                getConent () {
+                    alert(this.$refs.content.innerHTML)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

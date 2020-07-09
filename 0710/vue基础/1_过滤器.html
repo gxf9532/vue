@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <div id="app">
+        <p> 初始时间: {{ time | dateFormat }} </p>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script src="./js/monent.js"></script>
+    <script>
+        /*  
+            过滤器
+            对模板中的数据进行格式化之后再显示
+            特点: 不改变原来的数据 而是产生一个新的数据
+
+            自定义过滤器 
+            
+        */
+       Vue.filter('dateFormat', function(value, fStr = 'YYYY-MM-DD HH:mm:ss') {
+           // 对原始数据进行处理
+            return moment(value).format(fStr)
+       })
+
+        new Vue({
+            el: '#app',
+            data: {
+                time: Date.now()
+            }
+        })
+        //  注册时间  商品上架时间 ...
+
+    </script>
+</body>
+
+</html>
