@@ -1,12 +1,14 @@
 import Vue from 'vue'
+import VueResource from 'vue-resource'
 import App from './App.vue'
-import router from './router'
+
+// 使用组件库
+Vue.use(VueResource)
+
 new Vue({
   el: '#app',
   components: {
     App
   },
-  template: '<App/>',
-  // 配置路由
-  router
+  template: '<App/>'
 })

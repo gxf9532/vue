@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #main {
+            /* border:1px solid #CCC; */
+            padding: 10px;
+            width: 300px;
+            margin: 50px auto;
+        }
+
+        ul {
+            list-style: none;
+            border: 1px solid #F00;
+            padding: 50px;
+        }
+
+        ul li {
+            width: 200px;
+            height: 30px;
+            padding: 5px;
+            border: 1px solid #0F0;
+            margin: 5px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <ul>
+            <li>111</li>
+            <li>222</li>
+            <li>333</li>
+        </ul>
+    </div>
+    <script>
+        let ul = document.getElementsByTagName('ul')[0];
+        let lis = ul.getElementsByTagName('li')
+
+        ul.onmouseover = function () {
+            this.style.backgroundColor = '#FC1';
+            console.log('ul的mouseover事件')
+
+        }
+        ul.onmouseenter = function () {
+            console.log('ul的mouseenter事件')
+        }
+
+        ul.onmouseout = function () {
+            this.style.backgroundColor = '#FFF';
+        }
+
+        for (var i = 0; i < lis.length; i++) {
+            lis[i].onmouseover = function () {
+                this.style.backgroundColor = '#F00'
+            console.log('li的mouseenter事件')
+
+            }
+            lis[i].onmouseenter = function () {
+                console.log('li的mouseenter事件')
+
+            }
+        }
+
+    </script>
+</body>
+
+</html>
