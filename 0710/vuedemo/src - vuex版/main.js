@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 
 // 引入vueX核心
-import store from './store'
+import store from './vuex/store'
 
 new Vue({
   el: '#app',
